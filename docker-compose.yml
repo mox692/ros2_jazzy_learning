@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   ros2-jazzy-vnc:
     build: .
@@ -7,6 +5,7 @@ services:
     # Webブラウザからアクセスするためのポート設定
     ports:
       - "6080:80"
+      - "2222:22"
     # Macの ./src フォルダとコンテナ内の src フォルダを共有
     volumes:
       - ./src:/home/ubuntu/ros2_ws/src
