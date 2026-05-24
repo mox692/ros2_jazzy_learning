@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<robot name="simple_motorcycle" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <material name="blue">
+    <color rgba="0.1 0.3 0.9 1.0"/>
+  </material>
+
+  <material name="black">
+    <color rgba="0.02 0.02 0.02 1.0"/>
+  </material>
+
+  <material name="gray">
+    <color rgba="0.5 0.5 0.5 1.0"/>
+  </material>
+
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0.45"/>
+      <geometry>
+        <box size="0.8 0.18 0.18"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+  </link>
+
+  <link name="front_wheel">
+    <visual>
+      <origin rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.16" length="0.06"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+
+  <joint name="front_wheel_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="front_wheel"/>
+    <origin xyz="0.38 0 0.22"/>
+  </joint>
+
+  <link name="left_rear_wheel">
+    <visual>
+      <origin rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.16" length="0.05"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+
+  <joint name="left_rear_wheel_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="left_rear_wheel"/>
+    <origin xyz="-0.32 0.09 0.22"/>
+  </joint>
+
+  <link name="right_rear_wheel">
+    <visual>
+      <origin rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.16" length="0.05"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+
+  <joint name="right_rear_wheel_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="right_rear_wheel"/>
+    <origin xyz="-0.32 -0.09 0.22"/>
+  </joint>
+
+  <link name="handle">
+    <visual>
+      <origin xyz="0.35 0 0.65"/>
+      <geometry>
+        <box size="0.08 0.5 0.04"/>
+      </geometry>
+      <material name="gray"/>
+    </visual>
+  </link>
+
+  <joint name="handle_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="handle"/>
+    <origin xyz="0 0 0"/>
+  </joint>
+
+</robot>
