@@ -1,14 +1,20 @@
-# ROS 2 Humble + Web VNCのベースイメージ（ARM64対応）
-FROM tiryoh/ros2-desktop-vnc:humble
+# ROS 2 Jazzy + Web VNCのベースイメージ（ARM64対応）
+FROM tiryoh/ros2-desktop-vnc:jazzy
+
+# Gazebo Harmonicのリポジトリを追加
+RUN sudo apt-get update && sudo apt-get install -y wget lsb-release gnupg curl \
+    && sudo wget https://packages.osrfoundation.org/gazebo.gpg -O /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg \
+    && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null
 
 # パッケージリストの更新と、学習に必要なROS 2ツールのインストール
 RUN sudo apt-get update && sudo apt-get install -y \
-    ros-humble-turtlesim \
-    ros-humble-rviz2 \
-    ros-humble-ros-gz \
-    ros-humble-slam-toolbox \
-    ros-humble-xacro \
-    ros-humble-joint-state-publisher-gui \
+    ros-jazzy-turtlesim \
+    ros-jazzy-rviz2 \
+    ros-jazzy-ros-gz \
+    ros-jazzy-slam-toolbox \
+    ros-jazzy-xacro \
+    ros-jazzy-joint-state-publisher-gui \
+    gz-harmonic \
     openssh-server \
     && sudo rm -rf /var/lib/apt/lists/*
 
