@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  ros2-jazzy-vnc:
+    build: .
+    container_name: ros2_jazzy_dev
+    # Webブラウザからアクセスするためのポート設定
+    ports:
+      - "6080:80"
+    # Macの ./src フォルダとコンテナ内の src フォルダを共有
+    volumes:
+      - ./src:/home/ubuntu/ros2_ws/src
+    # Gazeboなどのシミュレータがメモリ不足で落ちないように拡張
+    shm_size: '2gb'
