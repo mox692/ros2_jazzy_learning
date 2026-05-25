@@ -8,12 +8,21 @@ RUN sudo apt-get update && sudo apt-get install -y wget lsb-release gnupg curl \
 
 # パッケージリストの更新と、学習に必要なROS 2ツールのインストール
 RUN sudo apt-get update && sudo apt-get install -y \
+    python3-rosdep \
+    python3-colcon-common-extensions \
     ros-jazzy-turtlesim \
     ros-jazzy-rviz2 \
     ros-jazzy-ros-gz \
     ros-jazzy-slam-toolbox \
     ros-jazzy-xacro \
+    ros-jazzy-robot-state-publisher \
+    ros-jazzy-joint-state-publisher \
     ros-jazzy-joint-state-publisher-gui \
+    ros-jazzy-gz-ros2-control \
+    ros-jazzy-ros2-control \
+    ros-jazzy-ros2-controllers \
+    ros-jazzy-controller-manager \
+    ros-jazzy-joint-state-broadcaster \
     gz-harmonic \
     openssh-server \
     && sudo rm -rf /var/lib/apt/lists/*
