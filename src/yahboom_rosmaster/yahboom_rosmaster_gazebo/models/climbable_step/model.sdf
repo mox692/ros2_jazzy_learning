@@ -1,0 +1,75 @@
+<?xml version='1.0'?>
+<sdf version='1.6'>
+  <!--
+    Climbable step for the ROSMASTER X3 mecanum wheel.
+
+    Wheel radius is only 0.0325 m (see mecanum_wheel.urdf.xacro), and a powered
+    wheel can reliably climb a square step up to roughly 30 % of its radius
+    before it stalls against the edge. The main step is therefore kept at
+    0.01 m (10 mm, ~31 % of the radius) so the robot drives over it instead of
+    getting stuck. A thin, lower lead-in lip in front gives the small wheel a
+    shallower pivot angle onto the main step.
+
+    Both surfaces are given friction so the friction-driven wheels can grip and
+    climb (traction comes from real wheel/surface contact, not a velocity
+    plugin).
+  -->
+  <model name='climbable_step'>
+    <static>true</static>
+    <link name="link">
+
+      <!-- Lead-in lip: 5 mm high, helps the 32.5 mm wheel start the climb -->
+      <collision name="lip_collision">
+        <pose>-0.55 0 0.0025 0 0 0</pose>
+        <geometry>
+          <box><size>0.10 2 0.005</size></box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>1.0</mu>
+              <mu2>1.0</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name="lip_visual">
+        <pose>-0.55 0 0.0025 0 0 0</pose>
+        <geometry>
+          <box><size>0.10 2 0.005</size></box>
+        </geometry>
+        <material>
+          <ambient>0.5 0.5 0.5 1</ambient>
+          <diffuse>0.5 0.5 0.5 1</diffuse>
+        </material>
+      </visual>
+
+      <!-- Main step: 10 mm high, 1 m deep, 2 m wide -->
+      <collision name="collision">
+        <pose>0 0 0.005 0 0 0</pose>
+        <geometry>
+          <box><size>1 2 0.01</size></box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>1.0</mu>
+              <mu2>1.0</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name="visual">
+        <pose>0 0 0.005 0 0 0</pose>
+        <geometry>
+          <box><size>1 2 0.01</size></box>
+        </geometry>
+        <material>
+          <ambient>0.6 0.6 0.6 1</ambient>
+          <diffuse>0.6 0.6 0.6 1</diffuse>
+        </material>
+      </visual>
+
+    </link>
+  </model>
+</sdf>
